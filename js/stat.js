@@ -10,14 +10,17 @@ var makeField = function (ctx, beginX, beginY) {
   ctx.fill();
 };
 
+var cloudCoordinateX = 100;
+var cloudCoordinateY = 10;
+
 window.renderStatistics = function (ctx, names, times) {
   // Рисуем тень облака
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-  makeField(ctx, 110, 20);
+  makeField(ctx, cloudCoordinateX + 10, cloudCoordinateY + 10);
 
   // Рисуем облако
   ctx.fillStyle = 'white';
-  makeField(ctx, 100, 10);
+  makeField(ctx, cloudCoordinateX, cloudCoordinateY);
 
   // Заголовок
   ctx.fillStyle = '#000';
