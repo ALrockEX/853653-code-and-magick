@@ -1,4 +1,8 @@
 'use strict';
+
+var cloudCoordinateX = 100;
+var cloudCoordinateY = 10;
+
 var makeField = function (ctx, beginX, beginY) {
   ctx.beginPath();
   ctx.moveTo(beginX, beginY + 290);
@@ -9,9 +13,6 @@ var makeField = function (ctx, beginX, beginY) {
   ctx.closePath();
   ctx.fill();
 };
-
-var cloudCoordinateX = 100;
-var cloudCoordinateY = 10;
 
 window.renderStatistics = function (ctx, names, times) {
   // Рисуем тень облака
