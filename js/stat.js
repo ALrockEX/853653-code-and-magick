@@ -1,15 +1,70 @@
 'use strict';
 
-var cloudCoordinateX = 100;
-var cloudCoordinateY = 10;
+var cloud = {
+  leftHeight: 290,
+  length: 420,
+  rightHeight: 270,
+  coordinateX: 100,
+  coordinateY: 10,
+  controlPoint: {
+    first: {
+      leftX: 50,
+      leftY: 220,
+      topX: 100,
+      topY: -35,
+      rightX: 350,
+      rightY: 70,
+      bottomX: 350,
+      bottomY: 310
+    },
+    second: {
+      leftX: -100,
+      leftY: 70,
+      topX: 300,
+      topY: 40,
+      rightX: 490,
+      rightY: 200,
+      bottomX: 100,
+      bottomY: 190
+    }
+  }
+};
 
 var makeField = function (ctx, beginX, beginY) {
   ctx.beginPath();
-  ctx.moveTo(beginX, beginY + 290);
-  ctx.bezierCurveTo(beginX + 50, beginY + 220, beginX - 100, beginY + 70, beginX, beginY);
-  ctx.bezierCurveTo(beginX + 100, beginY - 35, beginX + 300, beginY + 40, beginX + 420, beginY);
-  ctx.bezierCurveTo(beginX + 350, beginY + 70, beginX + 490, beginY + 200, beginX + 420, beginY + 270);
-  ctx.bezierCurveTo(beginX + 350, beginY + 310, beginX + 100, beginY + 190, beginX, beginY + 290);
+  ctx.moveTo(beginX, beginY + cloud.leftHeight);
+  ctx.bezierCurveTo(
+      beginX + cloud.controlPoint.first.leftX,
+      beginY + cloud.controlPoint.first.leftY,
+      beginX + cloud.controlPoint.second.leftX,
+      beginY + cloud.controlPoint.second.leftY,
+      beginX,
+      beginY
+  );
+  ctx.bezierCurveTo(
+      beginX + cloud.controlPoint.first.topX,
+      beginY + cloud.controlPoint.first.topY,
+      beginX + cloud.controlPoint.second.topX,
+      beginY + cloud.controlPoint.second.topY,
+      beginX + cloud.length,
+      beginY
+  );
+  ctx.bezierCurveTo(
+      beginX + cloud.controlPoint.first.rightX,
+      beginY + cloud.controlPoint.first.rightY,
+      beginX + cloud.controlPoint.second.rightX,
+      beginY + cloud.controlPoint.second.rightY,
+      beginX + cloud.length,
+      beginY + cloud.rightHeight
+  );
+  ctx.bezierCurveTo(
+      beginX + cloud.controlPoint.first.bottomX,
+      beginY + cloud.controlPoint.first.bottomY,
+      beginX + cloud.controlPoint.second.bottomX,
+      beginY + cloud.controlPoint.second.bottomY,
+      beginX,
+      beginY + cloud.leftHeight
+  );
   ctx.closePath();
   ctx.fill();
 };
@@ -17,11 +72,11 @@ var makeField = function (ctx, beginX, beginY) {
 window.renderStatistics = function (ctx, names, times) {
   // Рисуем тень облака
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-  makeField(ctx, cloudCoordinateX + 10, cloudCoordinateY + 10);
+  makeField(ctx, cloud.coordinateX + 10, cloud.coordinateY + 10);
 
   // Рисуем облако
   ctx.fillStyle = 'white';
-  makeField(ctx, cloudCoordinateX, cloudCoordinateY);
+  makeField(ctx, cloud.coordinateX, cloud.coordinateY);
 
   // Заголовок
   ctx.fillStyle = '#000';
