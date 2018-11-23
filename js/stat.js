@@ -1,5 +1,12 @@
 'use strict';
 
+var textX = 160;
+var textY = 30;
+var lineSpacing = 20;
+var barHeight = 150;
+var columnWidth = 40;
+var barSpacing = 50;
+var barBottomY = textY + 2 * lineSpacing + barHeight + 10;
 var cloud = {
   leftHeight: 290,
   length: 420,
@@ -81,8 +88,8 @@ window.renderStatistics = function (ctx, names, times) {
   // Заголовок
   ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
-  ctx.fillText('Ура вы победили!', 160, 30);
-  ctx.fillText('Список результатов:', 160, 50);
+  ctx.fillText('Ура вы победили!', textX, textY);
+  ctx.fillText('Список результатов:', textX, textY + lineSpacing);
 
   // Поиск максимума
   var timeMax = 0;
@@ -99,9 +106,22 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
-    ctx.fillRect(160 + i * 90, 230 - times[i] * 150 / timeMax, 40, times[i] * 150 / timeMax);
+    ctx.fillRect(
+        textX + i * (columnWidth + barSpacing),
+        barBottomY - times[i] * barHeight / timeMax,
+        columnWidth,
+        times[i] * barHeight / timeMax
+    );
     ctx.fillStyle = '#000';
-    ctx.fillText(names[i], 160 + i * 90, 250);
-    ctx.fillText(Math.round(times[i]), 160 + i * 90, 220 - times[i] * 150 / timeMax);
+    ctx.fillText(
+        names[i],
+        textX + i * (columnWidth + barSpacing),
+        barBottomY + lineSpacing
+    );
+    ctx.fillText(
+        Math.round(times[i]),
+        textX + i * (columnWidth + barSpacing),
+        textY + 2 * lineSpacing + barHeight - times[i] * barHeight / timeMax
+    );
   }
 };
