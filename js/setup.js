@@ -21,7 +21,10 @@ var setupFireball = form.querySelector('.setup-fireball-wrap');
 var inputWizardCoat = form.querySelector('.coat-color');
 var inputWizardEyes = form.querySelector('.eyes-color');
 var inputFireball = form.querySelector('.fireball-color');
-
+var firstPopupPosition = {
+  x: userDialog.style.left,
+  y: userDialog.style.top
+};
 var mockWizards = [];
 var names = [
   'Иван',
@@ -154,6 +157,8 @@ var closePopup = function () {
   userNameInput.removeEventListener('blur', onUserNameBlur);
   setupSubmit.removeEventListener('click', onSubmitClick);
   setupSubmit.removeEventListener('keydown', onSubmitEnterPress);
+  userDialog.style.left = firstPopupPosition.x;
+  userDialog.style.top = firstPopupPosition.y;
 };
 
 // ==================================================================
