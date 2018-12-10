@@ -4,6 +4,7 @@
   var popup = document.querySelector('.setup');
 
   window.util = {
+    lengthSimilars: 4,
     userDialog: popup,
     form: popup.querySelector('.setup-wizard-form'),
     userNameInput: popup.querySelector('.setup-user-name'),

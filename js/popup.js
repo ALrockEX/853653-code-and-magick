@@ -4,6 +4,7 @@
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
   var userNameFocus = false;
+  var opened = false;
   var firstPopupPosition = {
     x: window.util.userDialog.style.left,
     y: window.util.userDialog.style.top
@@ -28,13 +29,20 @@
     }
   };
 
-  var onSubmitClick = function () {
-    window.util.form.submit();
+  var onSubmit = function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(window.util.form),
+        window.requestDisplay.onSave,
+        window.requestDisplay.onError);
+  };
+
+  var onSubmitClick = function (evt) {
+    onSubmit(evt);
   };
 
   var onSubmitEnterPress = function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
-      window.util.form.submit();
+      onSubmit(evt);
     }
   };
 
@@ -61,6 +69,12 @@
     window.util.userNameInput.addEventListener('blur', onUserNameBlur);
     setupSubmit.addEventListener('click', onSubmitClick);
     setupSubmit.addEventListener('keydown', onSubmitEnterPress);
+
+    if (!opened) {
+      window.backend.load(window.requestDisplay.onLoad,
+          window.requestDisplay.onError);
+    }
+    opened = true;
   };
 
   var closePopup = function () {
