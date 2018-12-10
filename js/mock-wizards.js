@@ -1,6 +1,5 @@
 'use strict';
 (function () {
-  var lengthSimilars = 4;
   var mock = [];
   var names = [
     'Иван',
@@ -35,6 +34,6 @@
       };
     }
   };
-  mockGenerate(lengthSimilars);
+  mockGenerate(window.util.lengthSimilars);
   window.mockWizards = mock;
 })();
