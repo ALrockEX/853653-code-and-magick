@@ -4,10 +4,13 @@
   var popup = document.querySelector('.setup');
 
   window.util = {
+    coatColor: undefined,
+    eyesColor: undefined,
     lengthSimilars: 4,
     userDialog: popup,
     form: popup.querySelector('.setup-wizard-form'),
     userNameInput: popup.querySelector('.setup-user-name'),
+
     coatColors: [
       'rgb(101, 137, 164)',
       'rgb(241, 43, 107)',

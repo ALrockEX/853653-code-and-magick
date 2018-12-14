@@ -32,8 +32,8 @@
   var onSubmit = function (evt) {
     evt.preventDefault();
     window.backend.save(new FormData(window.util.form),
-        window.requestDisplay.onSave,
-        window.requestDisplay.onError);
+        window.similars.onSave,
+        window.similars.onError);
   };
 
   var onSubmitClick = function (evt) {
@@ -71,8 +71,8 @@
     setupSubmit.addEventListener('keydown', onSubmitEnterPress);
 
     if (!opened) {
-      window.backend.load(window.requestDisplay.onLoad,
-          window.requestDisplay.onError);
+      window.backend.load(window.similars.onLoad,
+          window.similars.onError);
     }
     opened = true;
   };

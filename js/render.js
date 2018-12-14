@@ -7,7 +7,7 @@
       .querySelector('.setup-similar-item');
   var fragment = document.createDocumentFragment();
 
-  var makeSet = function (wizards) {
+/*  var makeSet = function (wizards) {
     var set = [];
     var index;
 
@@ -19,6 +19,7 @@
     }
     return set;
   };
+*/
 
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -30,9 +31,16 @@
     return wizardElement;
   };
   var renderSimilarList = function (wizards) {
-    var wizardSet = makeSet(wizards);
-    for (var i = 0; i < wizardSet.length; i++) {
-      fragment.appendChild(renderWizard(wizardSet[i]));
+/*    for (var i = 0; similarListElement.children.length; i++) {
+      fragment.appendChild(renderWizard(similarListElement.children[i]));
+    }
+    fragment.remove();
+*/
+    while (similarListElement.lastChild) {
+      similarListElement.removeChild(similarListElement.lastChild);
+    }
+    for (var i = 0; i < window.util.lengthSimilars; i++) {
+      fragment.appendChild(renderWizard(wizards[i]));
     }
     similarListElement.appendChild(fragment);
 
